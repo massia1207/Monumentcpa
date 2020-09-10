@@ -1,0 +1,32 @@
+/* MARCUS CSS FOR TAX  */
+.message{
+  padding: 1.5rem;
+  font-size: 1.0rem;
+}
+
+#disclaimer{
+  /* text-align: center; */
+  font-size: 1.rem;
+  color: rgb(112, 100, 100);
+}
+
+
+#submit-tax, #income, #status{
+  vertical-align: bottom;
+  height: 2.80rem;
+  margin-left: 5px;
+
+}
+
+#home-banner{
+  width: 100%;
+
+}
+
+#tax-info{
+  align-items: center;
+}
+
+.card-panel{
+  height: 25rem;
+}
