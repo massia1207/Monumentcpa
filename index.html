@@ -40,7 +40,8 @@
   <section class="slider">
     <ul class="slides">
       <li>
-        <img src="images/myView.jpg">
+        <img class="hide-on-med-and-up"src="images/myView-sm.jpg">
+        <img class="show-on-medium-and-up"src="images/myView-lg.jpg">
         <!-- random image -->
         <div class="caption left-align">
           <h2>Business Tax</h2>
@@ -48,14 +49,17 @@
         </div>
       </li>
       <li>
-        <img src="images/Tiz.jpg">
+        <img class="hide-on-med-and-up"src="images/Addaquart.jpg">
+        <img class="show-on-medium-and-up"src="images/Tiz-lg.jpg">
+
         <!-- random image -->
         <div class="caption left-align">
           <h2>Individual Tax</h2>
         </div>
       </li>
       <li>
-        <img src="images/Howard.jpg">
+        <img class="hide-on-med-and-up"src="images/Howard-sm.jpg">
+        <img class="show-on-medium-and-up"src="images/Howard-lg.jpg">
         <!-- random image -->
         <div class="caption left-align">
           <h2>Tax Planning</h2>
@@ -69,7 +73,8 @@
         </div>
       </li>
       <li>
-        <img src="images/Ferry.jpg">
+        <img class="hide-on-med-and-up"src="images/Ferry-sm.jpg">
+        <img class="show-on-medium-and-up"src="images/Ferry-lg.jpg">
         <!-- random image -->
         <div class="caption left-align">
           <h2>Budgets & Forecasts</h2>
@@ -129,9 +134,9 @@
     Enter you taxable income and filing status.  Please exclude any capital gains or losses.
     <br><br>
      <div id = "taxCalculator" class = "row center block">
-      <input type="number" id="income" class="col s3" lang="en-150" placeholder="Enter your taxable income">    
+      <input type="number" id="income" class="col s3" lang="en-150" placeholder="Income">    
       <select id="status" class="browser-default col s3">
-        <option value="0">Select Filing Status</option>
+        <option value="0">Select</option>
         <option value="IND">Single</option>
         <option value="MFJ">Married Filing Jointly</option>
         <option value="MFS">Married Filing Separately</option>
