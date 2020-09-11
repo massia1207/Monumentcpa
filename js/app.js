@@ -8,9 +8,19 @@ M.Materialbox.init(mb, {});
 const ss = document.querySelectorAll('.scrollspy');
 M.ScrollSpy.init(ss, {});
 
-//Fixed Asset Button
-const fab = document.querySelector('.fixed-action-btn');
-M.FloatingActionButton.init(fab, {});
+// Fixed Asset Button
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.fixed-action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    // direction: 'left',
+    hoverEnabled: false
+  });
+});
+
+// const fab = document.querySelectorAll('.fixed-action-btn');
+// M.FloatingActionButton.init(fab, {
+//   hoverEnabled:false;
+// });
 
 // Slider
 const slider = document.querySelector('.slider');
