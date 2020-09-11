@@ -58,6 +58,7 @@ calcBtn.addEventListener('click', function(){
       disclaimer.textContent = "The calculated amount of tax shown is based on 2020 IRS ordinary income tax rates.  Capital gains, self employment, state or other types of taxes are not considered in this calculation."
 
     }
+    document.getElementById("message").focus();
 })
 
 function setMessage(msg, color, bckg){
@@ -142,8 +143,7 @@ function myTax(ordinary, status){
     if (ordinary > t6){
       ordTax = ordTax + ((ordinary - t6) * r7);
      }
-      
-    
+       
     
      return ordTax
     
