@@ -1,11 +1,9 @@
-/* MARCUS CSS FOR TAX  */
 .message{
   padding: 1.5rem;
   font-size: 1.0rem;
 }
 
 #disclaimer{
-  /* text-align: center; */
   font-size: 1.rem;
   color: rgb(112, 100, 100);
 }
@@ -13,20 +11,27 @@
 
 #submit-tax, #income, #status{
   vertical-align: bottom;
+  text-align: center;
   height: 2.80rem;
-  margin-left: 5px;
-
+  margin-left: 25px;
+  width: 28%;
 }
 
 #home-banner{
   width: 100%;
-
-}
-
-#tax-info{
-  align-items: center;
 }
 
 .card-panel{
   height: 25rem;
+}
+
+.brand-logo{
+  height: 2.5rem;
+  
+}
+
+.row{
+  float: none;
+  display: inline-block;
+  width: 100%;
 }

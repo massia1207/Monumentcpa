@@ -8,6 +8,10 @@ M.Materialbox.init(mb, {});
 const ss = document.querySelectorAll('.scrollspy');
 M.ScrollSpy.init(ss, {});
 
+//Fixed Asset Button
+const fab = document.querySelector('.fixed-action-btn');
+M.FloatingActionButton.init(fab, {});
+
 // Slider
 const slider = document.querySelector('.slider');
 M.Slider.init(slider, {
