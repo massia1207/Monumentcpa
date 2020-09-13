@@ -17,19 +17,18 @@
   width: 25%;
 }
 
+h4{
+  margin: .25rem 0 .5rem 0;
+}
+
 #home-banner{
   width: 100%;
 }
 
-
-  @media screen and (min-width: 845px) {
+  @media screen and (min-width: 690px) {
     .card-panel{
     height: 25rem;
-      }
- }
-  @media screen and (min-width: 601px) {
-    .card-panel{
-    height: 28rem;
+    padding: 10px;
   }
  }
 
@@ -42,3 +41,4 @@
   display: inline-block;
   width: 100%;
 }
+
