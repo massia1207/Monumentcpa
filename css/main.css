@@ -21,9 +21,17 @@
   width: 100%;
 }
 
-.card-panel{
-  height: 25rem;
-}
+
+  @media screen and (min-width: 845px) {
+    .card-panel{
+    height: 25rem;
+      }
+ }
+  @media screen and (min-width: 601px) {
+    .card-panel{
+    height: 28rem;
+  }
+ }
 
 .brand-logo{
   height: 2.5rem;
