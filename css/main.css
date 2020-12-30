@@ -9,12 +9,14 @@
 }
 
 
-#submit-tax, #income, #status{
+ #year, #income, #status{
   vertical-align: bottom;
   text-align: center;
+  justify-self: center;
   height: 2.80rem;
   margin-left: 20px;
-  width: 25%;
+  margin-bottom: 10px;
+  /* width: 30%; */
 }
 
 h4{

@@ -134,21 +134,27 @@
     <h4>2020 Federal Tax Calculator</h4>
     Enter your taxable income and filing status.  Please exclude any capital gains or losses.
     <br><br>
-     <div id = "taxCalculator" class = "row center block">
-      <input type="number" id="income" class="col s3" lang="en-150" placeholder="Income">    
-      <select id="status" class="browser-default col s3">
+     <div id = "taxCalculator" class = "row">
+      <select id="year" class="browser-default col s12 m3 l3">
+        <option value="0">Tax Year</option>
+        <option value="2020">2020</option>
+      </select>
+
+      <input type="number" id="income" class="browser-default col s12 m3" lang="en-150" placeholder="Income">    
+      <select id="status" class="browser-default col s12 m3 l3">
         <option value="0">Select</option>
         <option value="IND">Single</option>
         <option value="MFJ">Married Filing Jointly</option>
         <option value="MFS">Married Filing Separately</option>
         <option value="HOH">Head of Household</option>
       </select>
-      <button type="button" id="submit-tax" class="btn waves-effect waves-light blue col s3">
+    </div>
+      <button type="button" id="submit-tax" class="btn waves-effect waves-light blue col s12 m6 l3">
         <i class="fa fa-calculator"></i>
           Calculate
       </button>
+    </section>
     </div>
-  </section>
 
 <!-- RESULTS  -->
 <section class="section results">

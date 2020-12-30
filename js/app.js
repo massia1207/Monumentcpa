@@ -34,6 +34,7 @@ M.Slider.init(slider, {
 
 //UI ELEMENTS
 const taxcalculator = document.querySelector('#taxCalculator');
+const year = document.getElementById("year");
 const income = document.querySelector('#income');
 const Status = document.getElementById("status");
 const message = document.querySelector('.message');
@@ -46,15 +47,19 @@ calcBtn.addEventListener('click', function(){
   console.log("clicked");
   let Ordinary = parseInt(income.value);
   let MyStatus = Status.options[Status.selectedIndex];
+  let MyYear = year.options[year.selectedIndex];
   console.log(MyStatus.value);
     if(isNaN(Ordinary)){
       setMessage("Please Enter Your Income",'red','');
+      disclaimer.textContent = '';
+    }else if(MyYear.value === "0" ){
+      setMessage("Please Select a year", 'red','');
       disclaimer.textContent = '';
     }else if(MyStatus.value === "0" ){
       setMessage("Please Select Your Filing Status", 'red','');
       disclaimer.textContent = '';
     }else{
-      let Tax = myTax(Ordinary, MyStatus.value).toLocaleString('en-US',{
+      let Tax = myTax(Ordinary, MyStatus.value, MyYear.value).toLocaleString('en-US',{
         style: "currency",
         currency: "USD",
         minimumFractionDigits:0,
@@ -69,7 +74,7 @@ calcBtn.addEventListener('click', function(){
       // calcBtn.className += ' recalculate'
       // calcBtn.text = "Try Again"  
       
-      disclaimer.textContent = "The calculated amount of tax shown is based on 2020 IRS ordinary income tax rates.  Capital gains, self employment, state or other types of taxes are not considered in this calculation."
+      disclaimer.textContent = `The calculated amount of tax shown is based on ${MyYear.text} IRS ordinary income tax rates.  Capital gains, self employment, state or other types of taxes are not considered in this calculation.`
 
     }
     document.getElementById("message").focus();
@@ -82,88 +87,44 @@ function setMessage(msg, color, bckg){
 }
 
 //MATH FOR TAX
-function myTax(ordinary, status){      
-  let ordTax = 0;
-  let r1 = .1;
-  let r2 = .12;
-  let r3 = .22;
-  let r4 = .24;
-  let r5 = .32;
-  let r6 = .35;
-  let r7 = .37;
-  let t1 = 0, t2=0, t3=0, t4=0, t5=0, t6=0,t7=0;
-  
-    switch(status){
-      case "MFJ":
-        console.log("case is MFJ") 
-        t1 = 19750;
-        t2 = 80250;
-        t3 = 171050;
-        t4 = 326600;
-        t5 = 414700;
-        t6 = 622050;
-        break;
-      case "IND":
-        t1 = 9875;
-        t2 = 40125;
-        t3 = 85525;
-        t4 = 163300;
-        t5 = 207350;
-        t6 = 518400;
-        break;
-      case "MFS":
-        t1 = 9875;
-        t2 = 40125;
-        t3 = 85525;
-        t4 = 163300;
-        t5 = 207350;
-        t6 = 518400;
-        break;
-       case "HOH":
-        t1 = 14100;
-        t2 = 53700;
-        t3 = 85500;
-        t4 = 163300;
-        t5 = 207350;
-        t6 = 518400;
-        break;
-     }
-  
-   ordTax = 0
-   if(ordinary >0){
-   ordTax = Math.min(ordinary, t1)*r1;
-   }
-        
-    if (ordinary > t1){
-      ordTax = ordTax + ((Math.min(ordinary, t2) - t1) * r2);
+//generic tax function 
+function taxCalc(rates, brackets, income, status, year){
+  var tax = 0;
+  var myBracket = [];
+  var x = brackets.get(year)
+  x.forEach(function(item){
+    if (item[0] == status){
+        myBracket = item[1]
     }
+  }) 
   
-    if (ordinary > t2){
-      ordTax = ordTax + ((Math.min(ordinary, t3) - t2) * r3);
-    }
-     
-    if (ordinary > t3){
-      ordTax = ordTax + ((Math.min(ordinary, t4) - t3) * r4);
-    } 
-      
-    if (ordinary > t4){
-      ordTax = ordTax + ((Math.min(ordinary, t5) - t4) * r5);
-    } 
-      
-    if (ordinary > t5) {
-      ordTax = ordTax + ((Math.min(ordinary, t6) - t5) * r6);
-    }
-      
-    if (ordinary > t6){
-      ordTax = ordTax + ((ordinary - t6) * r7);
-     }
-       
-    
-     return ordTax
-    
+  for (let i = 0; i<rates[year].length-1; i++){
+    if (income > myBracket[i]){
+      tax += (Math.min(income,myBracket[i+1])-myBracket[i])*rates[year][i];
+      }
+  }
+  
+  if (income>myBracket[myBracket.length-1]){
+    tax += (income - myBracket[myBracket.length -1])*rates[year][rates[year].length-1];
+  }
+  
+   return tax
+
+} 
+
+//calculate fed tax
+function myTax(income, status, year){
+  var rates = {"2020": [.1,.12,.22,.24,.32,.35,.37]};
+  var brackets = new Map();
+  brackets.set("2020",[['MFJ', [0,19750,80250,171050,326600,414700,622050]],
+                     ['IND', [0,9875,40125,85525,163300,207350,518400]],
+                     ['HOH', [0,14100,53700,85500,63300,207350,518400]],
+                     ['MFS', [0,9875,40125,85525,163300,207350,518400]]]
+);
+
+return taxCalc(rates,brackets,income,status, year)
+
 }
-
-
 
 
 
