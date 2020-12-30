@@ -10,9 +10,9 @@
 
 
  #year, #income, #status{
-  vertical-align: bottom;
+  /* vertical-align: bottom; */
   text-align: center;
-  justify-self: center;
+  /* justify-self: center; */
   height: 2.80rem;
   margin-left: .5rem;
   margin-bottom: 10px;
