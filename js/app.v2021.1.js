@@ -74,7 +74,9 @@ calcBtn.addEventListener('click', function(){
       // calcBtn.className += ' recalculate'
       // calcBtn.text = "Try Again"  
       
-      disclaimer.textContent = `The calculated amount of tax shown is based on ${MyYear.text} IRS ordinary income tax rates.  Capital gains, self employment, state or other types of taxes are not considered in this calculation.`
+      disclaimer.textContent = `The calculated amount of tax shown is based on ${MyYear.text} IRS ordinary income tax rates.  Capital gains, self employment, state or other types of taxes are not considered in this calculation.`;
+
+      addRecord(MyYear.value,Ordinary.toLocaleString('en-US'),MyStatus.value,Tax);
 
     }
     document.getElementById("message").focus();
@@ -132,6 +134,21 @@ return taxCalc(rates,brackets,income,status, year)
 
 }
 
+// Add row to google sheet
+function addRecord(year, income, status, tax){
+  const url ="https://script.google.com/macros/s/AKfycbzoc7xhtDk1rYRL70S8BAKMAqoESa52mJ-5KDNCLiD0Pha_69nlUlAv7MzYVn8c8U3s/exec";
 
+  
+  fetch(url, {
+    method: 'POST',
+    mode: 'no-cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {'Content-Type': 'application/json'},
+    redirect: 'follow',
+    body: JSON.stringify({year: year, income: income, status: status, tax: tax}) 
+  });
+
+}
 
 
